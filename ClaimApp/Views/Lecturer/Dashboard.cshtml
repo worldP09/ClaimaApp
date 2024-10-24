@@ -1,0 +1,59 @@
+﻿
+
+@{
+    ViewData["Title"] = "Lecturer Dashboard";
+}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h2 class="display-4">welcome </h2>
+        <p class="lead">Manage your claims and track their status.</p>
+    </div>
+
+    <!-- Card Section -->
+    <div class="row mt-4">
+        <!-- Submit Claim -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-file-alt fa-3x mb-3 text-primary"></i>
+                    <h5 class="card-title">Submit a Claim</h5>
+                    <p class="card-text">Submit your monthly claims along with supporting documents.</p>
+                    <a href="/Lecturer/SubmitClaim" class="btn btn-primary btn-block">Submit Claim</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Track Claim -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-tasks fa-3x mb-3 text-success"></i>
+                    <h5 class="card-title">Track Your Claims</h5>
+                    <p class="card-text">View the status of your submitted claims and track progress.</p>
+                    <a href="/Lecturer/TrackClaims" class="btn btn-success btn-block">Track Claims</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-user fa-3x mb-3 text-info"></i>
+                    <h5 class="card-title">My Profile</h5>
+                    <p class="card-text">Update your account details and view your profile information.</p>
+                    <a href="/Lecturer/Profile" class="btn btn-info btn-block">View Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional: Alerts for status updates -->
+    @if (ViewBag.StatusMessage != null)
+    {
+        <div class="alert alert-success text-center mt-3">
+            @ViewBag.StatusMessage
+        </div>
+    }
+</div>

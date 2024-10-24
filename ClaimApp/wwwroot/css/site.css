@@ -1,0 +1,65 @@
+/* Custom Styling for ClaimApp Landing Page */
+
+body {
+    background-color: #f5f6f7;
+    font-family: 'Arial', sans-serif;
+}
+
+h1, h3 {
+    color: #343a40;
+    font-weight: 700;
+}
+
+.lead {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+    .card:hover {
+        transform: translateY(-10px);
+    }
+
+/* Icons */
+i {
+    color: #6c757d;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary, .btn-success {
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+/* Footer Styling */
+footer {
+    margin-top: 50px;
+    padding: 20px 0;
+    background-color: #343a40;
+    color: #fff;
+}
+
+    footer p {
+        margin: 0;
+    }

@@ -1,0 +1,99 @@
+﻿@model ClaimApp.Models.ManagerDashboardViewModel
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <title>Manager Dashboard</title>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Welcome, @Model.ManagerName</h2>
+
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Total Claims</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.TotalClaims</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Approved Claims</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.ApprovedClaims</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-header">Pending Claims</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.PendingClaims</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-header">Rejected Claims</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.RejectedClaims</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <h3>Pending Claims</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Lecturer Name</th>
+                        <th>Module Name</th>
+                        <th>Hours Worked</th>
+                        <th>Total Amount</th>
+                        <th>Date Submitted</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var claim in Model.PendingClaimsList)
+                    {
+                        <tr>
+                            <td>@claim.LecturerName</td>
+                            <td>@claim.ModuleName</td>
+                            <td>@claim.HoursWorked</td>
+                            <td>@claim.TotalAmount.ToString("C")</td> <!-- Formatting as currency -->
+                            <td>@claim.DateSubmitted.ToString("MM/dd/yyyy")</td> <!-- Formatting date -->
+                            <td>
+                                <form method="post" action="/Manager/ApproveClaim" class="d-inline">
+                                    <input type="hidden" name="claimId" value="@claim.Id" />
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                </form>
+                                <form method="post" action="/Manager/RejectClaim" class="d-inline">
+                                    <input type="hidden" name="claimId" value="@claim.Id" />
+                                    <button type="submit" class="btn btn-danger">Reject</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

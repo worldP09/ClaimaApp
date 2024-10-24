@@ -1,0 +1,79 @@
+﻿@model ClaimApp.Models.CoordinatorDashboardViewModel
+
+<div class="container">
+    <h2>Welcome, @Model.CoordinatorName</h2>
+
+    <!-- Rest of the dashboard view as before -->
+    <div class="row">
+        <!-- Display total claims, approved claims, pending claims, etc. -->
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5>Total Claims</h5>
+                    <p>@Model.TotalClaims</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5>Approved Claims</h5>
+                    <p>@Model.ApprovedClaims</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5>Pending Claims</h5>
+                    <p>@Model.PendingClaims</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h5>Rejected Claims</h5>
+                    <p>@Model.RejectedClaims</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mt-4">Pending Claims for Approval</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Claim ID</th>
+                <th>Lecturer Name</th>
+                <th>Module Name</th>
+                <th>Total Amount</th>
+                <th>Date Submitted</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model.PendingClaimsList)
+            {
+                <tr>
+                    <td>@claim.Id</td>
+                    <td>@claim.LecturerName</td>
+                    <td>@claim.ModuleName</td>
+                    <td>@claim.TotalAmount</td>
+                    <td>@claim.DateSubmitted.ToShortDateString()</td>
+
+                    <td>
+                        <form asp-action="ApproveClaim" method="post" style="display:inline;">
+                            <input type="hidden" name="claimId" value="@claim.Id" />
+                            <button type="submit" class="btn btn-success">Approve</button>
+                        </form>
+                        <form asp-action="RejectClaim" method="post" style="display:inline;">
+                            <input type="hidden" name="claimId" value="@claim.Id" />
+                            <button type="submit" class="btn btn-danger">Reject</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

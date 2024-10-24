@@ -1,0 +1,38 @@
+﻿@model ClaimApp.Models.TrackClaimsViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Claims</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Your Claims</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Module Name</th>
+                    <th>Hours Worked</th>
+                    <th>Total Amount</th>
+                    <th>Date Submitted</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in Model.ClaimsList)
+                {
+                    <tr>
+                        <td>@claim.ModuleName</td>
+                        <td>@claim.HoursWorked</td>
+                        <td>@claim.TotalAmount.ToString("C")</td>
+                        <td>@claim.DateSubmitted.ToString("MM/dd/yyyy")</td>
+                        <td>@claim.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

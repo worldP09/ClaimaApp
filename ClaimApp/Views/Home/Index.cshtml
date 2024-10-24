@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "ClaimApp - Landing Page";
+}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h1>Welcome to ClaimApp</h1>
+        <p class="lead">Streamlining the claim process for Independent Contractors, Programme Coordinators, and Academic Managers.</p>
+    </div>
+
+    <div class="row mt-4 text-center d-flex align-items-stretch">
+        <!-- Lecturer Section -->
+        <div class="col-md-4 d-flex">
+            <div class="card shadow-sm w-100">
+                <div class="card-body">
+                    <i class="fas fa-chalkboard-teacher fa-3x mb-3"></i>
+                    <h3 class="card-title">Lecturers</h3>
+                    <p class="card-text">Submit your monthly claims, upload supporting documents, and track your claim status.</p>
+                    <a asp-controller="Lecturer" asp-action="Login" class="btn btn-primary">Lecturer Login</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Programme Coordinator Section -->
+        <div class="col-md-4 d-flex">
+            <div class="card shadow-sm w-100">
+                <div class="card-body">
+                    <i class="fas fa-user-tie fa-3x mb-3"></i>
+                    <h3 class="card-title">Programme Coordinators</h3>
+                    <p class="card-text">Verify and approve lecturer claims with ease.</p>
+                    <a asp-controller="Coordinator" asp-action="Login" class="btn btn-secondary">Coordinator Login</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Manager Section -->
+        <div class="col-md-4 d-flex">
+            <div class="card shadow-sm w-100">
+                <div class="card-body">
+                    <i class="fas fa-user-shield fa-3x mb-3"></i>
+                    <h3 class="card-title">Academic Managers</h3>
+                    <p class="card-text">Manage claim approvals and monitor processes.</p>
+                    <a asp-controller="Manager" asp-action="Login" class="btn btn-success">Manager Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

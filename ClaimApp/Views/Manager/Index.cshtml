@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Manager Dashboard";
+}
+
+<div class="container mt-5">
+    <h2>Manager Dashboard</h2>
+    <p>Welcome, Academic Manager! You can oversee the entire claim approval process.</p>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-check-double fa-3x mb-3"></i>
+                    <h5 class="card-title">Approve Claims</h5>
+                    <p class="card-text">Review and approve claims after coordinator approval.</p>
+                    <a href="/Manager/ApproveClaims" class="btn btn-success">Approve Claims</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-eye fa-3x mb-3"></i>
+                    <h5 class="card-title">Monitor Claim Process</h5>
+                    <p class="card-text">Monitor the overall process of claim submissions and approvals.</p>
+                    <a href="/Manager/ViewClaims" class="btn btn-info">Monitor Claims</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

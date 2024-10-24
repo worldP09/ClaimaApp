@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Coordinator Dashboard";
+}
+
+<div class="container mt-5">
+    <h2>Coordinator Dashboard</h2>
+    <p>Welcome, Programme Coordinator! You can review and approve claims submitted by lecturers.</p>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-clipboard-check fa-3x mb-3"></i>
+                    <h5 class="card-title">Approve Claims</h5>
+                    <p class="card-text">Review and approve submitted claims by lecturers.</p>
+                    <a href="/Coordinator/ApproveClaims" class="btn btn-secondary">Approve Claims</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-tasks fa-3x mb-3"></i>
+                    <h5 class="card-title">Track Claim Status</h5>
+                    <p class="card-text">Track the status of claims being processed in the system.</p>
+                    <a href="/Coordinator/ViewClaims" class="btn btn-info">Track Claims</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

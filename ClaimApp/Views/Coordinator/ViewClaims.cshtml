@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ClaimApp.Models.ClaimModel>
+
+@{
+    ViewData["Title"] = "View Claims";
+}
+
+<div class="container mt-5">
+    <h2>Claims</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Claim ID</th>
+                <th>Lecturer Name</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model)
+            {
+                <tr>
+                    <td>@claim.Id</td>
+                    <td>@claim.LecturerName</td>
+                    <td>@claim.Amount</td>
+                    <td>@claim.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

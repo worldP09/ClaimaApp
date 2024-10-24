@@ -1,0 +1,106 @@
+﻿@model ClaimApp.Models.SubmitClaimViewModel
+
+@{
+    ViewData["Title"] = "Submit Claim";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <form asp-action="SubmitApplication" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter a description for your claim"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <h3>Modules</h3>
+        <div id="moduleContainer">
+            @for (int i = 0; i < Model.Modules.Count; i++)
+            {
+                <div class="form-row mb-3 moduleRow">
+                    <div class="col">
+                        <label asp-for="Modules[@i].ModuleName" class="control-label"></label>
+                        <input asp-for="Modules[@i].ModuleName" class="form-control" placeholder="Module Name" />
+                        <span asp-validation-for="Modules[@i].ModuleName" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="Modules[@i].HoursWorked" class="control-label"></label>
+                        <input asp-for="Modules[@i].HoursWorked" class="form-control" placeholder="Hours Worked" type="number" min="0" />
+                        <span asp-validation-for="Modules[@i].HoursWorked" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="Modules[@i].RatePerHour" class="control-label"></label>
+                        <input asp-for="Modules[@i].RatePerHour" class="form-control" placeholder="Rate Per Hour" type="number" step="0.01" min="0" />
+                        <span asp-validation-for="Modules[@i].RatePerHour" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label>Total Amount</label>
+                        <input class="form-control" value="@(Model.Modules[i].TotalAmount)" readonly />
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-danger remove-module">Remove</button>
+                    </div>
+                </div>
+            }
+        </div>
+        <button type="button" class="btn btn-primary" id="addModule">Add Module</button>
+
+        <div class="form-group">
+            <label for="SupportingDocument">Supporting Document</label>
+            <input type="file" class="form-control-file" asp-for="SupportingDocument" />
+            <span asp-validation-for="SupportingDocument" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit Claim</button>
+        <a asp-action="TrackClaims" class="btn btn-secondary">Track Claims</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        document.getElementById('addModule').addEventListener('click', function () {
+            const moduleContainer = document.getElementById('moduleContainer');
+            const moduleIndex = moduleContainer.getElementsByClassName('moduleRow').length;
+
+            const newModuleRow = document.createElement('div');
+            newModuleRow.className = 'form-row mb-3 moduleRow';
+            newModuleRow.innerHTML = `
+                        <div class="col">
+                            <label for="Modules_${moduleIndex}__ModuleName" class="control-label">Module Name</label>
+                            <input name="Modules[${moduleIndex}].ModuleName" class="form-control" placeholder="Module Name" />
+                            <span asp-validation-for="Modules[${moduleIndex}].ModuleName" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <label for="Modules_${moduleIndex}__HoursWorked" class="control-label">Hours Worked</label>
+                            <input name="Modules[${moduleIndex}].HoursWorked" class="form-control" placeholder="Hours Worked" type="number" min="0" />
+                            <span asp-validation-for="Modules[${moduleIndex}].HoursWorked" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <label for="Modules_${moduleIndex}__RatePerHour" class="control-label">Rate Per Hour</label>
+                            <input name="Modules[${moduleIndex}].RatePerHour" class="form-control" placeholder="Rate Per Hour" type="number" step="0.01" min="0" />
+                            <span asp-validation-for="Modules[${moduleIndex}].RatePerHour" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <label>Total Amount</label>
+                            <input class="form-control" value="0" readonly />
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-danger remove-module">Remove</button>
+                        </div>
+                    `;
+            moduleContainer.appendChild(newModuleRow);
+        });
+
+        // Remove module functionality
+        document.getElementById('moduleContainer').addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-module')) {
+                e.target.closest('.moduleRow').remove();
+            }
+        });
+    </script>
+}
